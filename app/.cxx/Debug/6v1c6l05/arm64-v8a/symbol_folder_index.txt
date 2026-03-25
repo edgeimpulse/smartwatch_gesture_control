@@ -1,0 +1,1 @@
+C:\Users\KTP\AndroidStudioProjects\WizBulbController\app\build\intermediates\cxx\Debug\6v1c6l05\obj\arm64-v8a

@@ -1,0 +1,79 @@
+cmake_minimum_required(VERSION 3.22.1)
+project("edgeimpulsewearos")
+
+set(CMAKE_VERBOSE_MAKEFILE TRUE)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# ── Edge Impulse deployment folder ───────────────────────────────────────────
+# To update the model: run update_ei_deployment.bat <path-to-new-ei-export>
+# from the project root, then rebuild.
+set(EI_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/ei-deployment")
+set(EI_SDK  "${EI_ROOT}/edge-impulse-sdk")
+# ─────────────────────────────────────────────────────────────────────────────
+
+include(${EI_SDK}/cmake/utils.cmake)
+
+add_definitions(
+    -DEI_PORTING_ANDROID=1
+    -DNDEBUG
+)
+
+add_library(${CMAKE_PROJECT_NAME} SHARED wearosinference.cpp)
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    ${EI_ROOT}
+    ${EI_SDK}
+    ${EI_ROOT}/model-parameters
+)
+
+# TFLite Micro — compiled from source, each directory explicitly
+file(GLOB TFLM_MICRO    "${EI_SDK}/tensorflow/lite/micro/*.cc")
+file(GLOB TFLM_KERNELS  "${EI_SDK}/tensorflow/lite/micro/kernels/*.cc")
+file(GLOB TFLM_PLANNER  "${EI_SDK}/tensorflow/lite/micro/memory_planner/*.cc")
+file(GLOB TFLM_CORE_API "${EI_SDK}/tensorflow/lite/core/api/*.cc")
+
+list(REMOVE_ITEM TFLM_MICRO
+    "${EI_SDK}/tensorflow/lite/micro/test_helpers.cc"
+    "${EI_SDK}/tensorflow/lite/micro/test_helper_custom_ops.cc"
+    "${EI_SDK}/tensorflow/lite/micro/fake_micro_context.cc"
+    "${EI_SDK}/tensorflow/lite/micro/mock_micro_graph.cc"
+    "${EI_SDK}/tensorflow/lite/micro/recording_micro_allocator.cc"
+    "${EI_SDK}/tensorflow/lite/micro/recording_single_arena_buffer_allocator.cc"
+)
+list(REMOVE_ITEM TFLM_KERNELS
+    "${EI_SDK}/tensorflow/lite/micro/kernels/kernel_runner.cc"
+)
+
+# TFLite kernel utilities referenced by TFLM kernel files
+set(TFLITE_KERNEL_UTILS
+    "${EI_SDK}/tensorflow/lite/kernels/kernel_util_lite.cc"
+    "${EI_SDK}/tensorflow/lite/kernels/internal/quantization_util.cc"
+    "${EI_SDK}/tensorflow/lite/kernels/internal/portable_tensor_utils.cc"
+    "${EI_SDK}/tensorflow/lite/kernels/internal/reference_portable_tensor_utils.cc"
+    "${EI_SDK}/tensorflow/lite/kernels/internal/tensor_utils.cc"
+)
+
+# EI DSP + model + Android porting
+file(GLOB EI_CPP_SOURCES
+    "${EI_ROOT}/tflite-model/*.cpp"
+    "${EI_SDK}/dsp/kissfft/*.cpp"
+    "${EI_SDK}/dsp/dct/*.cpp"
+    "${EI_SDK}/dsp/memory.cpp"
+    "${EI_SDK}/porting/android/*.cpp"
+)
+
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+    ${TFLM_MICRO}
+    ${TFLM_KERNELS}
+    ${TFLM_PLANNER}
+    ${TFLM_CORE_API}
+    ${TFLITE_KERNEL_UTILS}
+    ${EI_CPP_SOURCES}
+    "${EI_SDK}/tensorflow/lite/c/common.c"
+)
+
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    android
+    log
+)

@@ -1,0 +1,3 @@
+C:/Users/KTP/AndroidStudioProjects/WizBulbController/app/.cxx/Debug/6v1c6l05/armeabi-v7a/CMakeFiles/edgeimpulsewearos.dir
+C:/Users/KTP/AndroidStudioProjects/WizBulbController/app/.cxx/Debug/6v1c6l05/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/KTP/AndroidStudioProjects/WizBulbController/app/.cxx/Debug/6v1c6l05/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,41 @@
+{
+  "buildFiles": [
+    "C:\\Users\\KTP\\AndroidStudioProjects\\WizBulbController\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\KTP\\AndroidStudioProjects\\WizBulbController\\app\\src\\main\\cpp\\edge-impulse-sdk\\cmake\\utils.cmake"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\KTP\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\KTP\\AndroidStudioProjects\\WizBulbController\\app\\.cxx\\Debug\\6v1c6l05\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\KTP\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\KTP\\AndroidStudioProjects\\WizBulbController\\app\\.cxx\\Debug\\6v1c6l05\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "edgeimpulsewearos::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "edgeimpulsewearos",
+      "output": "C:\\Users\\KTP\\AndroidStudioProjects\\WizBulbController\\app\\build\\intermediates\\cxx\\Debug\\6v1c6l05\\obj\\arm64-v8a\\libedgeimpulsewearos.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "C:\\Users\\KTP\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "C:\\Users\\KTP\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
