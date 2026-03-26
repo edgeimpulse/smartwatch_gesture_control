@@ -1,6 +1,6 @@
 # Gesture Control Demo
 
-A Wear OS app for Galaxy Watch 4 that uses on-device gesture recognition (via Edge Impulse) to control a WiZ smart bulb over Wi-Fi.
+A Wear OS app for Galaxy Watch 4 that uses on-device gesture recognition (via Edge Impulse) to control a smart light bulb over Wi-Fi.
 
 ## Gestures
 
