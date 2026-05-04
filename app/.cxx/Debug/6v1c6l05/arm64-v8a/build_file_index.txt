@@ -1,2 +1,0 @@
-C:\Users\KTP\AndroidStudioProjects\WizBulbController\app\src\main\cpp\CMakeLists.txt
-C:\Users\KTP\AndroidStudioProjects\WizBulbController\app\src\main\cpp\edge-impulse-sdk\cmake\utils.cmake

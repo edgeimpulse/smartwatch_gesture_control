@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "name": "Galaxy Watch 4 – Wear OS APK",
+    "description": "Compiles the trained EI model into a Wear OS APK for the WizBulbController Galaxy Watch 4 app (gesture control via 6-axis IMU).",
+    "operatesOn": "library",
+    "dockerContainer": "REGISTRY/USERNAME/wiz-wear-deploy:latest",
+    "privileged": false,
+    "showIfComputeOnDevice": false,
+    "indMetadata": false
+}
